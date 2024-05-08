@@ -15,17 +15,17 @@ public class SnakeGame {
 
         UserAccount account = new UserAccount();
         UserAccount.selection();
-        System.out.print("Please select an option: ");
+
+        System.out.print("Please select an option: "); //add a while loop
         String select = scanner.next();
-        if(select.equals("1")){
+        if (select.equals("1")) {
             account.createAccount();
             UserAccount.selection();
         }
         if (select.equals("2")) {
-            account.login();
-            new GameFrame(); //starts game
+            account.login(); //make it so that game starts when login is successful
+            new GameFrame();//starts game
         }
-
         TicTacToe TicTac = new TicTacToe();
         //hey
 
