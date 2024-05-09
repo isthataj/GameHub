@@ -33,7 +33,7 @@ public class MainMenu extends JFrame {
                 tictactoeButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        new GameFrame();
+                        new TicTacToe();
                     }
                 });
                 panel.add(tictactoeButton);
