@@ -5,10 +5,10 @@ import javax.swing.*;
 import java.util.Random;
 
 
-public class GamePanel extends JPanel implements ActionListener {
+public class SnakeGame extends JPanel implements ActionListener {
 
-    static final int SCREEN_WIDTH = 1240;
-    static final int SCREEN_HEIGHT = 830;
+    static final int SCREEN_WIDTH = 1100;
+    static final int SCREEN_HEIGHT = 800;
     static final int UNIT_SIZE = 50;
     static final int GAME_UNITS= (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
     static final int DELAY = 75;
@@ -22,7 +22,10 @@ public class GamePanel extends JPanel implements ActionListener {
     boolean running = false;
     Timer timer;
     Random random;
-    GamePanel(){
+    JButton restartB = new JButton("Restart");
+    JPanel resPanel = new JPanel();
+
+    SnakeGame(){
         random = new Random();
         this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
         this.setBackground(Color.black);
@@ -42,12 +45,12 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     public void draw(Graphics g){
         if(running) {
-            /*
+
             for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
                 g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
                 g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
             }
-            */
+
 
             g.setColor(Color.red);
             g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
@@ -146,6 +149,30 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setFont( new Font("Mono Space", Font.BOLD, 75));
         FontMetrics metrics2 = getFontMetrics(g.getFont());
         g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
+       setRestartB();
+
+    }
+    public void setRestartB(){
+        resPanel.setLayout(new GridLayout(1, 1));
+        resPanel.setBackground(new Color(173, 216, 230));
+        resPanel.setBounds(0,0,800,100);
+        restartB.setText("Restart");
+        restartB.setFont(new Font("Mono Space", Font.BOLD, 75));
+        restartB.setHorizontalAlignment(SwingConstants.CENTER);
+        restartB.setOpaque(true);
+        restartB.setForeground(new Color(15, 25,25));
+        restartB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                restartGame();
+            }
+        });
+        resPanel.add(restartB);
+        resPanel.setVisible(true);
+    }
+
+
+    private void restartGame() {
+        new GameFrame();
     }
 
     @Override

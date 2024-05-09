@@ -12,6 +12,8 @@ public class TicTacToe implements ActionListener{
     JPanel title = new JPanel();
     JPanel button = new JPanel();
     JLabel text = new JLabel();
+    JButton restartB = new JButton("Restart");
+    JPanel resPanel = new JPanel();
     JButton[] buttons = new JButton[9];
     boolean firstPlayerTurn;
 
@@ -24,7 +26,7 @@ public class TicTacToe implements ActionListener{
 
         text.setBackground(new Color(173, 216, 230));
         text.setForeground(new Color(15, 25,25));
-        text.setFont(new Font("Monospaced", Font.BOLD, 75));
+        text.setFont(new Font("Mono Space", Font.BOLD, 75));
         text.setHorizontalAlignment(JLabel.CENTER);
         text.setText("TicTacToe");
         text.setOpaque(true);
@@ -38,7 +40,7 @@ public class TicTacToe implements ActionListener{
         for(int i = 0; i < 9; i++){
             buttons[i] = new JButton();
             button.add(buttons[i]);
-            buttons[i].setFont(new Font("Monospaced", Font.BOLD, 100));
+            buttons[i].setFont(new Font("Mono Space", Font.BOLD, 100));
             buttons[i].setFocusable(false);
             buttons[i].addActionListener(this);
         }
@@ -49,6 +51,33 @@ public class TicTacToe implements ActionListener{
 
         first();
     }
+    public void setRestartB(){
+        resPanel.setLayout(new GridLayout(1, 1));
+        resPanel.setBackground(new Color(173, 216, 230));
+        resPanel.setBounds(0,0,800,100);
+        restartB.setText("Restart");
+        restartB.setFont(new Font("Mono Space", Font.BOLD, 75));
+        restartB.setHorizontalAlignment(SwingConstants.CENTER);
+        restartB.setOpaque(true);
+        restartB.setForeground(new Color(15, 25,25));
+        restartB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                restartGame();
+            }
+        });
+        resPanel.add(restartB);
+        resPanel.setVisible(false);
+        frame.add(resPanel, BorderLayout.SOUTH);
+    }
+    private void restartGame() {
+        new TicTacToe();
+    }
+    private void displayRestartButton() {
+        resPanel.setVisible(true); // Show the restart panel
+        frame.revalidate(); // Refresh the frame to ensure visibility
+        frame.repaint(); // Repaint the frame
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -72,7 +101,22 @@ public class TicTacToe implements ActionListener{
                         checkWin();
                     }
                 }
+
+                }
+        }
+        boolean allButtonsFilled = true;
+        for (JButton button : buttons) {
+            if (button.getText().isEmpty()) {
+                allButtonsFilled = false;
+                break;
             }
+        }
+
+        if (allButtonsFilled && !checkWin() ) {
+            text.setBackground(new Color(255, 0, 0));
+            text.setText("You tie");
+            setRestartB();
+            displayRestartButton();
         }
     }
 
@@ -94,77 +138,97 @@ public class TicTacToe implements ActionListener{
         }
     }
 
-    public void checkWin(){
+    public boolean checkWin(){
         if((buttons[0].getText().equals("X")) && (buttons[1].getText().equals("X")) && (buttons[2].getText().equals("X"))){
             winx(0, 1, 2);
+            return true;
         }
         if((buttons[3].getText().equals("X")) && (buttons[4].getText().equals("X")) && (buttons[5].getText().equals("X"))){
             winx(3, 4, 5);
+            return true;
         }
         if((buttons[6].getText().equals("X")) && (buttons[7].getText().equals("X")) && (buttons[8].getText().equals("X"))){
             winx(6, 7, 8);
+            return true;
         }
         if((buttons[0].getText().equals("X")) && (buttons[4].getText().equals("X")) && (buttons[8].getText().equals("X"))){
             winx(0, 4, 8);
+            return true;
         }
         if((buttons[2].getText().equals("X")) && (buttons[4].getText().equals("X")) && (buttons[6].getText().equals("X"))){
             winx(2, 4, 6);
+            return true;
         }
         if((buttons[0].getText().equals("X")) && (buttons[3].getText().equals("X")) && (buttons[6].getText().equals("X"))){
             winx(0, 3, 6);
+            return true;
         }
         if((buttons[1].getText().equals("X")) && (buttons[4].getText().equals("X")) && (buttons[7].getText().equals("X"))){
             winx(1, 4, 7);
+            return true;
         }
         if((buttons[2].getText().equals("X")) && (buttons[5].getText().equals("X")) && (buttons[8].getText().equals("X"))){
             winx(2, 5, 8);
+            return true;
         }
 
         if((buttons[0].getText().equals("O")) && (buttons[1].getText().equals("O")) && (buttons[2].getText().equals("O"))){
             wino(0, 1, 2);
+            return true;
         }
         if((buttons[3].getText().equals("O")) && (buttons[4].getText().equals("O")) && (buttons[5].getText().equals("O"))){
             wino(3, 4, 5);
+            return true;
         }
         if((buttons[6].getText().equals("O")) && (buttons[7].getText().equals("O")) && (buttons[8].getText().equals("O"))){
             wino(6, 7, 8);
+            return true;
         }
         if((buttons[0].getText().equals("O")) && (buttons[4].getText().equals("O")) && (buttons[8].getText().equals("O"))){
             wino(0, 4, 8);
+            return true;
         }
         if((buttons[2].getText().equals("O")) && (buttons[4].getText().equals("O")) && (buttons[6].getText().equals("O"))){
             wino(2, 4, 6);
+            return true;
         }
         if((buttons[0].getText().equals("O")) && (buttons[3].getText().equals("O")) && (buttons[6].getText().equals("O"))){
             wino(0, 3, 6);
+            return true;
         }
         if((buttons[1].getText().equals("O")) && (buttons[4].getText().equals("O")) && (buttons[7].getText().equals("O"))){
             wino(1, 4, 7);
+            return true;
         }
         if((buttons[2].getText().equals("O")) && (buttons[5].getText().equals("O")) && (buttons[8].getText().equals("O"))){
             wino(2, 5, 8);
+            return true;
         }
+        return false;
+
     }
 
     public void winx(int x, int y, int z){
-        buttons[x].setBackground(Color.GREEN);
-        buttons[y].setBackground(Color.GREEN);
-        buttons[z].setBackground(Color.GREEN);
+        text.setBackground(new Color(31, 255, 0));
 
         for(int i=0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
         text.setText("X wins");
+        setRestartB();
+        displayRestartButton();
+
     }
 
     public void wino(int x, int y, int z){
-        buttons[x].setBackground(Color.GREEN);
-        buttons[y].setBackground(Color.GREEN);
-        buttons[z].setBackground(Color.GREEN);
+        text.setBackground(new Color(13, 255, 0));
 
         for(int i=0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
         text.setText("O wins");
+        setRestartB();
+        displayRestartButton();
     }
+
 }

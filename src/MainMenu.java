@@ -9,7 +9,7 @@ public class MainMenu extends JFrame {
 
     public MainMenu(){
         setTitle("Welcome to the Our Game!");
-        setSize(1100, 900);
+        setSize(1100, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -17,8 +17,8 @@ public class MainMenu extends JFrame {
         panel.setLayout(new GridLayout(3,1,10,10));
         panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
-        JLabel introLabel = new JLabel("Welcome to the Game Menu!", JLabel.CENTER);
-        introLabel.setFont(new Font("Serif", Font.BOLD,16));
+        JLabel introLabel = new JLabel("Welcome to out Game!", JLabel.CENTER);
+        introLabel.setFont(new Font("Mono Space", Font.BOLD,30));
         panel.add(introLabel);
 
         JButton snakeButton = new JButton("Play Snake Game!!");

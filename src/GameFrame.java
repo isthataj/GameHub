@@ -7,12 +7,13 @@ public class GameFrame extends JFrame {
 
     /**
      * Constructs a new {@code GameFrame} instance.
-     * Initializes the frame with a {@link GamePanel}, sets the title,
+     * Initializes the frame with a {@link SnakeGame}, sets the title,
      * default close operation, resizability, packing, visibility, and centering of the window.
      */
     GameFrame() {
         // Add a new GamePanel to the frame
-        this.add(new GamePanel());
+
+        this.add(new SnakeGame());
         // Set the title of the frame
         this.setTitle("Snake");
         // Set the default close operation to exit the application
@@ -25,6 +26,7 @@ public class GameFrame extends JFrame {
         this.setVisible(true);
         // Center the frame on the screen
         this.setLocationRelativeTo(null);
+
     }
     public static void main(String[] args) {
 
