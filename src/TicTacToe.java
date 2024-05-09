@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.JPanel;
 import javax.swing.*;
+import java.util.Random;
 
 /**
  * The {@code TicTacToe} class implements a GUI-based Tic Tac Toe game.
@@ -102,6 +104,55 @@ public class TicTacToe implements ActionListener {
      */
     public void checkWin() {
         // Check win conditions for X and O.
+        if((buttons[0].getText().equals("X")) && (buttons[1].getText().equals("X")) && (buttons[2].getText().equals("X"))){
+            winx(0, 1, 2);
+        }
+        if((buttons[3].getText().equals("X")) && (buttons[4].getText().equals("X")) && (buttons[5].getText().equals("X"))){
+            winx(3, 4, 5);
+        }
+        if((buttons[6].getText().equals("X")) && (buttons[7].getText().equals("X")) && (buttons[8].getText().equals("X"))){
+            winx(6, 7, 8);
+        }
+        if((buttons[0].getText().equals("X")) && (buttons[4].getText().equals("X")) && (buttons[8].getText().equals("X"))){
+            winx(0, 4, 8);
+        }
+        if((buttons[2].getText().equals("X")) && (buttons[4].getText().equals("X")) && (buttons[6].getText().equals("X"))){
+            winx(2, 4, 6);
+        }
+        if((buttons[0].getText().equals("X")) && (buttons[3].getText().equals("X")) && (buttons[6].getText().equals("X"))){
+            winx(0, 3, 6);
+        }
+        if((buttons[1].getText().equals("X")) && (buttons[4].getText().equals("X")) && (buttons[7].getText().equals("X"))){
+            winx(1, 4, 7);
+        }
+        if((buttons[2].getText().equals("X")) && (buttons[5].getText().equals("X")) && (buttons[8].getText().equals("X"))){
+            winx(2, 5, 8);
+        }
+
+        if((buttons[0].getText().equals("O")) && (buttons[1].getText().equals("O")) && (buttons[2].getText().equals("O"))){
+            wino(0, 1, 2);
+        }
+        if((buttons[3].getText().equals("O")) && (buttons[4].getText().equals("O")) && (buttons[5].getText().equals("O"))){
+            wino(3, 4, 5);
+        }
+        if((buttons[6].getText().equals("O")) && (buttons[7].getText().equals("O")) && (buttons[8].getText().equals("O"))){
+            wino(6, 7, 8);
+        }
+        if((buttons[0].getText().equals("O")) && (buttons[4].getText().equals("O")) && (buttons[8].getText().equals("O"))){
+            wino(0, 4, 8);
+        }
+        if((buttons[2].getText().equals("O")) && (buttons[4].getText().equals("O")) && (buttons[6].getText().equals("O"))){
+            wino(2, 4, 6);
+        }
+        if((buttons[0].getText().equals("O")) && (buttons[3].getText().equals("O")) && (buttons[6].getText().equals("O"))){
+            wino(0, 3, 6);
+        }
+        if((buttons[1].getText().equals("O")) && (buttons[4].getText().equals("O")) && (buttons[7].getText().equals("O"))){
+            wino(1, 4, 7);
+        }
+        if((buttons[2].getText().equals("O")) && (buttons[5].getText().equals("O")) && (buttons[8].getText().equals("O"))){
+            wino(2, 5, 8);
+        }
     }
 
     /**
