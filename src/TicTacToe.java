@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.JPanel;
 import javax.swing.*;
+import java.util.Random;
 
 /**
  * The {@code TicTacToe} class implements a GUI-based Tic Tac Toe game.
