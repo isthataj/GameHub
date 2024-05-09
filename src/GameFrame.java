@@ -26,5 +26,13 @@ public class GameFrame extends JFrame {
         // Center the frame on the screen
         this.setLocationRelativeTo(null);
     }
+    public static void main(String[] args) {
+
+
+        new GameFrame();
+
+
+
+    }
 
 }
