@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 
 /**
  * The {@code GameFrame} class extends {@link JFrame} to create a frame for the Snake game.
+ * It sets up the window attributes like size, visibility, and behavior upon closure.
  */
 public class GameFrame extends JFrame {
 
@@ -28,13 +29,15 @@ public class GameFrame extends JFrame {
         this.setLocationRelativeTo(null);
 
     }
+
+    /**
+     * The main method that serves as the entry point for the application.
+     * It creates an instance of {@code GameFrame}, initializing the game.
+     *
+     * @param args command line arguments, not used in this application.
+     */
     public static void main(String[] args) {
-
-
         new GameFrame();
-
-
-
     }
 
 }

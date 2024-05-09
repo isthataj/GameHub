@@ -4,12 +4,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * The {@code MainMenu} class extends {@link JFrame} and serves as the main menu for launching games.
+ * It provides buttons to start different games such as Snake and Tic Tac Toe.
+ */
 public class MainMenu extends JFrame {
 
-    public MainMenu(){
-        setTitle("Welcome to the Our Game!");
-        setSize(1100, 800);
+    /**
+     * Constructs a new {@code MainMenu} instance, setting up the GUI components for the main menu.
+     */
+    public MainMenu() {
+        setTitle("Welcome to Our Game!");
+        setSize(1100, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -22,8 +28,8 @@ public class MainMenu extends JFrame {
         panel.add(introLabel);
 
         JButton snakeButton = new JButton("Play Snake Game!!");
-        snakeButton.addActionListener(new ActionListener(){
-
+        snakeButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 new GameFrame();
             }});
@@ -41,9 +47,17 @@ public class MainMenu extends JFrame {
 
         add(panel, BorderLayout.CENTER);
     }
-    public static void main(String[] args){
-        SwingUtilities.invokeLater(new Runnable(){
-            public void run(){
+
+    /**
+     * The main method that serves as the entry point for the MainMenu application.
+     * It creates an instance of {@code MainMenu} and makes it visible.
+     *
+     * @param args command line arguments, not used in this application.
+     */
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
                 MainMenu menu = new MainMenu();
                 menu.setVisible(true);
             }

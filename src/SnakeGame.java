@@ -4,11 +4,14 @@ import javax.swing.JPanel;
 import javax.swing.*;
 import java.util.Random;
 
+/**
+ * The {@code GamePanel} class extends {@link JPanel} and implements {@link ActionListener} to provide a panel where the Snake game logic is handled.
+ * This includes game initialization, movement mechanics, game rendering, and game over conditions.
+ */
+public class GamePanel extends JPanel implements ActionListener {
 
-public class SnakeGame extends JPanel implements ActionListener {
-
-    static final int SCREEN_WIDTH = 1100;
-    static final int SCREEN_HEIGHT = 800;
+    static final int SCREEN_WIDTH = 1240;
+    static final int SCREEN_HEIGHT = 830;
     static final int UNIT_SIZE = 50;
     static final int GAME_UNITS= (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
     static final int DELAY = 75;
@@ -26,6 +29,11 @@ public class SnakeGame extends JPanel implements ActionListener {
     JPanel resPanel = new JPanel();
 
     SnakeGame(){
+
+    /**
+     * Constructor initializes the GamePanel, sets up game properties, and starts the game.
+     */
+
         random = new Random();
         this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
         this.setBackground(Color.black);
@@ -33,13 +41,22 @@ public class SnakeGame extends JPanel implements ActionListener {
         this.addKeyListener(new MyKeyAdapter());
         startGame();
     }
-    public void startGame(){
+
+    /**
+     * Starts the game by placing the first apple, setting the game to running, and starting the timer.
+     */
+    public void startGame() {
         newApple();
         running = true;
         timer = new Timer(DELAY,this);
         timer.start();
     }
-    public void paintComponent(Graphics g){
+
+    /**
+     * Paints components on the panel. This method is called automatically by Swing when the panel needs to be redrawn.
+     * @param g the Graphics object used for drawing.
+     */
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
     }
@@ -52,6 +69,13 @@ public class SnakeGame extends JPanel implements ActionListener {
             }
 
 
+
+    /**
+     * Draws the current state of the game including the grid, the snake, the apple, and the score.
+     * @param g the Graphics object used for drawing.
+     */
+    public void draw(Graphics g) {
+        if (running) {
             g.setColor(Color.red);
             g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 
@@ -67,59 +91,69 @@ public class SnakeGame extends JPanel implements ActionListener {
                 }
             }
             g.setColor(Color.red);
-            g.setFont( new Font("Mono Space", Font.BOLD, 40));
+            g.setFont(new Font("Mono Space", Font.BOLD, 40));
             FontMetrics metrics = getFontMetrics(g.getFont());
-            g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
-        }
-        else {
+            g.drawString("Score: " + applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: " + applesEaten)) / 2, g.getFont().getSize());
+        } else {
             gameOver(g);
         }
-
-
     }
-    public void newApple(){
-        appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
-        appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
-    }
-    public void move(){
-            for(int i= bodyParts; i>0;i--){
-                x[i]=x[i-1];
-                y[i]=y[i-1];
 
-            }
-            switch(direction){
-                case 'U':
-                    y[0]= y[0]- UNIT_SIZE;
-                    break;
-                case 'D':
-                    y[0]= y[0]+ UNIT_SIZE;
-                    break;
-                case 'L':
-                    x[0]= x[0]- UNIT_SIZE;
-                    break;
-                case 'R':
-                    x[0]= x[0]+ UNIT_SIZE;
-                    break;
+    /**
+     * Places a new apple randomly on the board.
+     */
+    public void newApple() {
+        appleX = random.nextInt((int) (SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE;
+        appleY = random.nextInt((int) (SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE;
+    }
+
+    /**
+     * Updates the position of the snake based on the current direction.
+     */
+    public void move() {
+        for (int i = bodyParts; i > 0; i--) {
+            x[i] = x[i - 1];
+            y[i] = y[i - 1];
+        }
+
+        switch (direction) {
+            case 'U':
+                y[0] -= UNIT_SIZE;
+                break;
+            case 'D':
+                y[0] += UNIT_SIZE;
+                break;
+            case 'L':
+                x[0] -= UNIT_SIZE;
+                break;
+            case 'R':
+                x[0] += UNIT_SIZE;
+                break;
         }
     }
 
-    public void checkApple(){
-        if((x[0]==appleX)&&(y[0]==appleY)){
+    /**
+     * Checks if the head of the snake has collided with an apple. Increases the snake size and score if true.
+     */
+    public void checkApple() {
+        if ((x[0] == appleX) && (y[0] == appleY)) {
             bodyParts++;
             applesEaten++;
             newApple();
         }
     }
-    public void checkCollisions(){
-        //This checks if head collides with body
-        for(int i = bodyParts; i>0;i--){
-            if((x[0]==x[i])&& (y[0]==y[i])){
+
+    /**
+     * Checks for collisions with the snake's body or the borders, stopping the game if a collision is detected.
+     */
+    public void checkCollisions() {
+        for (int i = bodyParts; i > 0; i--) {
+            if ((x[0] == x[i]) && (y[0] == y[i])) {
                 running = false;
             }
         }
-        //checks if head touches left border
-        if(x[0]< 0){
-            running =false;
+        if (x[0] < 0 || x[0] > SCREEN_WIDTH || y[0] < 0 || y[0] > SCREEN_HEIGHT) {
+            running = false;
         }
         //check if touches right border
         if(x[0] > SCREEN_WIDTH ){
@@ -138,15 +172,18 @@ public class SnakeGame extends JPanel implements ActionListener {
             timer.stop();
         }
     }
-    public void gameOver(Graphics g){
-        //Score
+
+    /**
+     * Displays the game over screen, including the final score.
+     * @param g the Graphics object used for drawing.
+     */
+    public void gameOver(Graphics g) {
         g.setColor(Color.red);
-        g.setFont( new Font("Mono Space", Font.BOLD, 40));
+        g.setFont(new Font("Mono Space", Font.BOLD, 40));
         FontMetrics metrics = getFontMetrics(g.getFont());
-        g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
-        //Game Over text;
-        g.setColor(Color.red);
-        g.setFont( new Font("Mono Space", Font.BOLD, 75));
+        g.drawString("Score: " + applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: " + applesEaten)) / 2, g.getFont().getSize());
+
+        g.setFont(new Font("Mono Space", Font.BOLD, 75));
         FontMetrics metrics2 = getFontMetrics(g.getFont());
         g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
        setRestartB();
@@ -173,11 +210,12 @@ public class SnakeGame extends JPanel implements ActionListener {
 
     private void restartGame() {
         new GameFrame();
+        g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over")) / 2, SCREEN_HEIGHT / 2);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e){
-        if(running){
+    public void actionPerformed(ActionEvent e) {
+        if (running) {
             move();
             checkApple();
             checkCollisions();
@@ -185,28 +223,31 @@ public class SnakeGame extends JPanel implements ActionListener {
         repaint();
     }
 
+    /**
+     * Custom key adapter to handle directional inputs from the keyboard.
+     */
     public class MyKeyAdapter extends KeyAdapter {
         @Override
-        public void keyPressed(KeyEvent e){
-            switch(e.getKeyCode()){
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT:
-                    if(direction!= 'R'){
-                        direction= 'L';
+                    if (direction != 'R') {
+                        direction = 'L';
                     }
                     break;
                 case KeyEvent.VK_RIGHT:
-                    if(direction!= 'L'){
-                        direction= 'R';
+                    if (direction != 'L') {
+                        direction = 'R';
                     }
                     break;
                 case KeyEvent.VK_UP:
-                    if(direction!= 'D'){
-                        direction= 'U';
+                    if (direction != 'D') {
+                        direction = 'U';
                     }
                     break;
                 case KeyEvent.VK_DOWN:
-                    if(direction!= 'U'){
-                        direction= 'D';
+                    if (direction != 'U') {
+                        direction = 'D';
                     }
                     break;
             }
