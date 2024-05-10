@@ -35,10 +35,8 @@ public class TicTacToe implements ActionListener {
         text.setText("TicTacToe");
         text.setOpaque(true);
 
-
         title.setLayout(new BorderLayout());
         title.setBounds(0, 0, 800, 100);
-
 
         button.setLayout(new GridLayout(3, 3));
         button.setBackground(new Color(0, 0, 0));
@@ -63,7 +61,7 @@ public class TicTacToe implements ActionListener {
 
     public void setRestartB() {
         resPanel.setLayout(new GridLayout(1, 1));
-        resPanel.setBackground(new Color(173, 216, 230));
+        resPanel.setBackground(new Color(13, 216, 230));
         resPanel.setBounds(0, 0, 800, 100);
         restartB.setText("Restart");
         restartB.setFont(new Font("Mono Space", Font.BOLD, 75));
@@ -127,26 +125,30 @@ public class TicTacToe implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < 9; i++) {
-            if (e.getSource() == buttons[i]) {
-                if (firstPlayerTurn) {
-                    if (buttons[i].getText().isEmpty()) {
-                        buttons[i].setForeground(new Color(220, 20, 60));
-                        buttons[i].setText("X");
-                        firstPlayerTurn = false;
-                        text.setText("O's turn");
-                        checkWin();
-                    }
-                } else {
-                    if (buttons[i].getText().isEmpty()) {
-                        buttons[i].setForeground(new Color(0, 0, 255));
-                        buttons[i].setText("O");
-                        firstPlayerTurn = true;
-                        text.setText("X's turn");
-                        checkWin();
-                    }
+            if (e.getSource() == buttons[i] && buttons[i].getText().isEmpty()) {
+                // Launch the mini-game
+                MiniTic miniGame = new MiniTic(frame);
+                miniGame.setVisible(true);  // Show the mini-game and wait for it to close
+                int result = miniGame.getWinner();
+
+                // Update the main game button based on the mini-game result
+                if (result == 1) {
+                    buttons[i].setText("X");
+                    buttons[i].setForeground(new Color(220, 20, 60)); // Color for X
+                } else if (result == 2) {
+                    buttons[i].setText("O");
+                    buttons[i].setForeground(new Color(0, 0, 255)); // Color for O
                 }
+
+                // Check if this move ends the game
+                if (checkWin() || allButtonsFilled()) {
+                    displayGameOver(); // Handle game over logic
+                }
+                break;
             }
         }
+
+
         boolean allButtonsFilled = true;
         for (JButton button : buttons) {
             if (button.getText().isEmpty()) {
@@ -163,6 +165,22 @@ public class TicTacToe implements ActionListener {
             setMenuB();
             displayButtons();
         }
+    }
+    private void displayGameOver() {
+        // Logic to display game over, such as disabling all buttons or showing a message
+        for (JButton button : buttons) {
+            button.setEnabled(false); // Disable all buttons after game over
+        }
+        winO();
+        winX();
+    }
+    private boolean allButtonsFilled() {
+        for (JButton button : buttons) {
+            if (button.getText().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -258,9 +276,6 @@ public class TicTacToe implements ActionListener {
         setRestartB();
         setMenuB();
         displayButtons();
-
-
-
     }
 
     public void winO() {
@@ -274,6 +289,5 @@ public class TicTacToe implements ActionListener {
         setMenuB();
         displayButtons();
     }
-
 
 }
