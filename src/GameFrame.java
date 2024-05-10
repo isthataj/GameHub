@@ -1,4 +1,7 @@
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * The {@code GameFrame} class extends {@link JFrame} to create a frame for the Snake game.
@@ -16,6 +19,7 @@ public class GameFrame extends JFrame {
 
         this.add(new SnakeGame());
         // Set the title of the frame
+
         this.setTitle("Snake");
         // Set the default close operation to exit the application
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

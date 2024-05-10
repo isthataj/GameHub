@@ -14,35 +14,41 @@ public class MainMenu extends JFrame {
      * Constructs a new {@code MainMenu} instance, setting up the GUI components for the main menu.
      */
     public MainMenu() {
-        setTitle("Welcome to Our Game!");
-        setSize(1100, 900);
+        setTitle("Game Hub");
+        setSize(1100, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3,1,10,10));
-        panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
-        JLabel introLabel = new JLabel("Welcome to out Game!", JLabel.CENTER);
-        introLabel.setFont(new Font("Mono Space", Font.BOLD,30));
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(3, 1, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JLabel introLabel = new JLabel("Welcome to our Game!", JLabel.CENTER);
+        introLabel.setFont(new Font("Mono Space", Font.BOLD, 80));
+
         panel.add(introLabel);
 
-        JButton snakeButton = new JButton("Play Snake Game!!");
+        JButton snakeButton = new JButton("Play Snake Game!");
+        snakeButton.setFont(new Font("Mono Space", Font.BOLD, 20));
+
         snakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new GameFrame();
-            }});
+            }
+        });
         panel.add(snakeButton);
 
         JButton tictactoeButton = new JButton("Play Tic Tac Toe Game");
-                tictactoeButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        new TicTacToe();
-                    }
-                });
-                panel.add(tictactoeButton);
+        tictactoeButton.setFont(new Font("Mono Space", Font.BOLD, 20));
+        tictactoeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TicTacToe();
+            }
+        });
+        panel.add(tictactoeButton);
 
 
         add(panel, BorderLayout.CENTER);
