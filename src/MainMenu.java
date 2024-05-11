@@ -39,7 +39,7 @@ public class MainMenu extends JFrame {
         });
         panel.add(snakeButton);
 
-        JButton tictactoeButton = new JButton("Play Tic Tac Toe Game");
+        JButton tictactoeButton = new JButton("Play Ultimate Tic Tac Toe Game");
         styleButton(tictactoeButton);
         tictactoeButton.addActionListener(new ActionListener() {
             @Override

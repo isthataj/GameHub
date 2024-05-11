@@ -188,10 +188,10 @@ public class TicTacToe implements ActionListener {
 
         if (random.nextInt(2) == 0) {
             firstPlayerTurn = true;
-            text.setText("X's turn");
+            text.setText("Ultimate TicTacToe");
         } else {
             firstPlayerTurn = false;
-            text.setText("O's turn");
+            text.setText("Ultimate TicTacToe");
         }
     }
 
