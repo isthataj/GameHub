@@ -33,15 +33,4 @@ public class GameFrame extends JFrame {
         this.setLocationRelativeTo(null);
 
     }
-
-    /**
-     * The main method that serves as the entry point for the application.
-     * It creates an instance of {@code GameFrame}, initializing the game.
-     *
-     * @param args command line arguments, not used in this application.
-     */
-    public static void main(String[] args) {
-        new GameFrame();
-    }
-
 }
