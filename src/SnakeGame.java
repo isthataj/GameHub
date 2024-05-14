@@ -6,6 +6,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+/**
+ * The {@code SnakeGame} class creates the graphical components of the Snake game
+ */
 public class SnakeGame extends JPanel implements ActionListener {
     static final int SCREEN_WIDTH = 1100;
     static final int SCREEN_HEIGHT = 800;

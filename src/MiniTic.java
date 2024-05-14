@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The {@code MiniTic} class creates a mini TicTacToe game for the TicTacToe class
+ */
 public class MiniTic extends JDialog {
     private JButton[] buttons = new JButton[9];
     private boolean firstPlayerTurn = true; // Assuming X starts
