@@ -8,19 +8,27 @@ public class MiniTic extends JDialog {
     private boolean firstPlayerTurn = true; // Assuming X starts
     private int winner = 0; // 0 - no winner yet, 1 - X wins, 2 - O wins
 
+    /**
+     * Constructs a MiniTic dialog which is modal and centered relative to its owner.
+     *
+     * @param owner The frame from which the dialog is displayed and blocked.
+     */
     public MiniTic(JFrame owner) {
         super(owner, "Mini Tic Tac Toe", true); // Make it modal
         setSize(500, 400);
-        setLayout(new GridLayout(3, 3));
-        setLocationRelativeTo(owner);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        getContentPane().setBackground(new Color(25, 25, 25));
-        initializeButtons();
+        setLayout(new GridLayout(3, 3)); // Set layout to grid for the buttons.
+        setLocationRelativeTo(owner); // Center the dialog relative to the owner.
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Set default close operation.
+        getContentPane().setBackground(new Color(25, 25, 25)); // Set the background color of the dialog.
+        initializeButtons(); // Method call to initialize buttons (Assuming this method exists in your class).
     }
 
+    /**
+     * Initializes buttons for the Tic Tac Toe grid, setting up their font, adding action listeners,
+     * and adding them to the dialog's content pane.
+     */
     private void initializeButtons() {
         for (int i = 0; i < 9; i++) {
-
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Mono Space", Font.BOLD, 90));
             buttons[i].addActionListener(new ActionListener() {
@@ -53,8 +61,11 @@ public class MiniTic extends JDialog {
         }
     }
 
+    /**
+     * Checks each row, column, and diagonal to determine if there is a winner or if the game is a draw.
+     * @return 1 if player X wins, 2 if player O wins, 0 if the game is still ongoing, -1 if it's a draw.
+     */
     private int checkWin() {
-        // Check rows, columns, and diagonals for a win
         for (int a = 0; a < 8; a++) {
             String line = null;
             switch (a) {
@@ -99,7 +110,11 @@ public class MiniTic extends JDialog {
         return -1; // Tie
     }
 
+    /**
+     * Returns the winner of the game.
+     * @return the winner status code: 0 (no winner), 1 (X wins), 2 (O wins), or -1 (tie).
+     */
     public int getWinner() {
-        return winner; // Getter for the winner to be used by the main game
+        return winner;
     }
 }
