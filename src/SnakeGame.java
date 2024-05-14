@@ -200,7 +200,9 @@ public class SnakeGame extends JPanel implements ActionListener {
         }
     }
 
-
+    /**
+     * Checks if the head of the snake either hits the body or the border
+     */
     public void checkCollisions() {
         // This checks if head collides with body
         for (int i = bodyParts; i > 0; i--) {

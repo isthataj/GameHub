@@ -56,6 +56,9 @@ public class MiniTic extends JDialog {
         }
     }
 
+    /**
+     * Checks if the game has a winner or if a tie has occurred
+     */
     private void checkGameStatus() {
         int result = checkWin();
         if (result != 0) { // There is a winner or a tie
