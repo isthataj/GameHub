@@ -231,8 +231,7 @@ public class TicTacToe implements ActionListener {
         for (JButton button : buttons) {
             button.setEnabled(false); // Disable all buttons after game over
         }
-        winO();  // Check if O has won and handle accordingly
-        winX();  // Check if X has won and handle accordingly
+        checkWin();
     }
 
     /**
