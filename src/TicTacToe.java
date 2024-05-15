@@ -224,7 +224,7 @@ public class TicTacToe implements ActionListener {
 
     /**
      * Handles the game over logic, such as disabling all buttons to prevent further interaction
-     * and invoking methods to determine if there was a win for X or O.
+     * and invoking methods to determine if either X or O won.
      * This method ensures no more moves can be made once the game ends.
      */
     private void displayGameOver() {
