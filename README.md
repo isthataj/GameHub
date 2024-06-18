@@ -1,9 +1,9 @@
 # Game Hub
 
-Welcome to Game Hub! Choose between two classic games: Ultimate Tic Tac Toe and Snake. With an intuitive interface, you can pause and return to the main menu at any time. Enjoy a smooth and engaging experience. Dive in and have fun!
+Welcome to Game Hub! Choose between two classic games: Ultimate Tic Tac Toe and Snake. With an intuitive interface, you can restart or return to the main menu after completing a game. Enjoy a smooth and engaging experience. Dive in and have fun!
 
 ## Features
-- Main Menu: Choose between two games with options to pause and return to the main menu.
+- Main Menu: Choose between two games with options to restart and return to the main menu.
 - Ultimate Tic Tac Toe: A strategic twist on the classic game.
 - Snake: The timeless arcade game.
 
@@ -28,7 +28,7 @@ Welcome to Game Hub! Choose between two classic games: Ultimate Tic Tac Toe and 
 
 ## Usage
 - From the main menu, select a game to play.
-- Use the pause feature to halt the game and return to the main menu.
+- After completing a game, choose to restart or return to the main menu.
 
 ## Documentation
 For detailed documentation, see the [javadocs](javadocs/index-files).
