@@ -31,4 +31,4 @@ Welcome to Game Hub! Choose between two classic games: Ultimate Tic Tac Toe and 
 - Use the pause feature to halt the game and return to the main menu.
 
 ## Documentation
-For detailed documentation, see the [javadocs](javadocs/index files).
+For detailed documentation, see the [javadocs](javadocs/index-files).
