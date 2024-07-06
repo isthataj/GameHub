@@ -30,5 +30,4 @@ Welcome to Game Hub! Choose between two classic games: Ultimate Tic Tac Toe and 
 - From the main menu, select a game to play.
 - After completing a game, choose to restart or return to the main menu.
 
-## Documentation
-For detailed documentation, see the [javadocs](javadocs/index-files).
+
